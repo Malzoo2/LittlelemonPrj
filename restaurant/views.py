@@ -9,6 +9,7 @@ def index(request):
     return render(request, 'index.html',{})
 
 class MenuItemView(generics.ListCreateAPIView):
+    permission_classes = [IsAuthenticated]
     queryset = MenuItem.objects.all()
     serializer_class = MenuSerializer
 
@@ -17,7 +18,8 @@ class SingleMenuItemView(generics.RetrieveAPIView, generics.DestroyAPIView):
     serializer_class = MenuSerializer
 
 class BookingViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
     queryset = Booking.objects.all()
     serializer_class = BookSerializer
-    permission_classes = [IsAuthenticated]
+    
 
